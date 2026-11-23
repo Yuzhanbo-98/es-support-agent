@@ -214,6 +214,20 @@ def test_shopify_client_credentials_fetches_and_refreshes_token():
     with pytest.raises(ValueError):
         ShopifyShop("x.myshopify.com", client=_client(handler))
 
+def test_shopify_search_only_active_products():
+    seen = {}
+
+    def handler(req):
+        seen["q"] = json.loads(req.content)["variables"]["q"]
+        return httpx.Response(200, json={"data": {"products": {"nodes": []}}})
+
+    s = ShopifyShop("x.myshopify.com", "t", client=_client(handler))
+    s.search_products("vestido lino")
+    assert seen["q"].startswith("status:active AND (") and "lino" in seen["q"]
+    s.search_products("")
+    assert seen["q"] == "status:active"
+
+
 # ---------- 服务端 ----------
 
 def test_chat_and_admin_approve(shop):

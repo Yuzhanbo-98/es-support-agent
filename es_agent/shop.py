@@ -184,8 +184,10 @@ class ShopifyShop:
 
     def search_products(self, query: str, limit: int = 5) -> list[dict]:
         q = """query($q: String, $n: Int!) { products(first: $n, query: $q) { nodes { %s } } }""" % self.PRODUCT_FIELDS
-        words = " OR ".join(sorted(_tokens(query))) or None
-        nodes = self._gql(q, {"q": words, "n": limit})["products"]["nodes"]
+        words = " OR ".join(sorted(_tokens(query)))
+        # 只查上架商品：已归档 / 草稿的商品不推荐给顾客
+        search = f"status:active AND ({words})" if words else "status:active"
+        nodes = self._gql(q, {"q": search, "n": limit})["products"]["nodes"]
         return [_summary(self._to_internal(n)) for n in nodes]
 
     def get_product(self, product_id: str) -> dict | None:
