@@ -3,37 +3,74 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Lumi Home & Style · Demo</title>
+<title>Lumi Shiba Club · Demo del agente</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito:wght@400;600&family=Caveat:wght@700&display=swap" rel="stylesheet">
 <style>
-  body{font-family:-apple-system,Segoe UI,Roboto,sans-serif;margin:0;background:#faf8f5;color:#222}
-  header{padding:18px 24px;background:#fff;border-bottom:1px solid #eee;font-weight:700;font-size:20px}
-  main{max-width:900px;margin:0 auto;padding:24px 16px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px}
-  .p{background:#fff;border-radius:10px;padding:14px;font-size:14px}
-  #chat-btn{position:fixed;right:20px;bottom:20px;background:#111;color:#fff;border:0;border-radius:24px;padding:12px 18px;cursor:pointer;font-size:15px}
-  #chat{position:fixed;right:20px;bottom:76px;width:min(360px,calc(100vw - 32px));height:480px;background:#fff;border-radius:14px;box-shadow:0 8px 30px rgba(0,0,0,.18);display:none;flex-direction:column;overflow:hidden}
+  :root{--navy:#1d2f4f;--cream:#fffaf3;--amber:#b8692a}
+  body{font-family:'Nunito',-apple-system,Segoe UI,Roboto,sans-serif;margin:0;color:var(--navy);
+       background:linear-gradient(180deg,#6f8db3 0%,#93add0 30%,#a9c0dc 65%,#c4d5e9 100%) fixed;min-height:100vh}
+  header{padding:18px 24px;display:flex;justify-content:space-between;align-items:center;color:var(--cream)}
+  header b{font-family:'Fredoka',sans-serif;font-weight:600;font-size:22px}
+  header a{color:var(--cream);font-size:14px}
+  main{max-width:980px;margin:0 auto;padding:8px 16px 120px}
+  h1{font-family:'Caveat',cursive;font-size:64px;margin:10px 0 0;text-align:center}
+  .intro{text-align:center;max-width:620px;margin:6px auto 18px;line-height:1.55}
+  .try{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:28px}
+  .try button{font:500 13px 'Fredoka',sans-serif;background:var(--cream);color:var(--navy);border:0;border-radius:999px;
+              padding:8px 14px;cursor:pointer;box-shadow:0 3px 10px rgba(29,47,79,.15)}
+  h2{font-family:'Fredoka',sans-serif;font-weight:500;font-size:18px;margin:26px 0 10px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}
+  .p{background:rgba(255,250,243,.6);border-radius:18px;overflow:hidden;font-size:14px}
+  .p img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
+  .p div{padding:10px 12px 12px;font-family:'Fredoka',sans-serif;font-weight:500;line-height:1.3}
+  .p small{display:block;font-family:'Nunito',sans-serif;font-weight:600;color:var(--amber);margin-top:4px}
+  #chat-btn{position:fixed;right:20px;bottom:20px;background:var(--navy);color:#fff;border:0;border-radius:24px;padding:12px 18px;cursor:pointer;font:500 15px 'Fredoka',sans-serif}
+  #chat{position:fixed;right:20px;bottom:76px;width:min(360px,calc(100vw - 32px));height:480px;background:#fff;border-radius:18px;box-shadow:0 8px 30px rgba(0,0,0,.18);display:none;flex-direction:column;overflow:hidden}
   #chat.open{display:flex}
-  #chat .top{background:#111;color:#fff;padding:12px 14px;font-weight:600}
+  #chat .top{background:var(--navy);color:#fff;padding:12px 14px;font-family:'Fredoka',sans-serif;font-weight:500}
   #log{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
   .b{max-width:80%;padding:8px 11px;border-radius:12px;font-size:14px;line-height:1.4;white-space:pre-wrap}
-  .me{align-self:flex-end;background:#111;color:#fff}
-  .bot{align-self:flex-start;background:#f1f1f1}
+  .me{align-self:flex-end;background:var(--navy);color:#fff}
+  .bot{align-self:flex-start;background:#eef3f9}
   form{display:flex;border-top:1px solid #eee}
   input{flex:1;border:0;padding:12px;font-size:14px;outline:none}
-  form button{border:0;background:#fff;padding:0 14px;cursor:pointer;font-weight:600}
+  form button{border:0;background:#fff;padding:0 14px;cursor:pointer;font-weight:600;color:var(--navy)}
 </style>
 </head>
 <body>
-<header>Lumi Home &amp; Style</header>
+<header><b>Lumi Shiba Club</b><a href="https://github.com/Yuzhanbo-98/es-support-agent">Código en GitHub</a></header>
 <main>
-  <p>Tienda de demostración. Abre el chat y pregunta por tallas, stock, envíos, devoluciones o tu pedido
-  (prueba: pedido <b>#1003</b>, email <b>marta@example.com</b>).</p>
+  <h1>Pregúntale al agente</h1>
+  <p class="intro">Demo del agente de atención al cliente en español. Lee en directo los productos, tallas, stock,
+  políticas y pedidos de nuestra tienda Shopify de prueba. Abre el chat abajo a la derecha o prueba una de estas preguntas:</p>
+  <div class="try">
+    <button>¿Qué talla de collar le va a un shiba adulto?</button>
+    <button>¿El peluche sésamo es apto para niños pequeños?</button>
+    <button>¿Cuánto cuesta el envío a Madrid?</button>
+    <button>¿Dónde está mi pedido #1001? Mi email es lucia@example.com</button>
+  </div>
+
+  <h2>Merch</h2>
   <div class="grid">
-    <div class="p">Linen Midi Dress<br>49,90 €</div>
-    <div class="p">CloudStep Running Shoes<br>59,00 €</div>
-    <div class="p">Mulberry Silk Scarf<br>35,00 €</div>
-    <div class="p">Non-slip Yoga Mat 6mm<br>29,90 €</div>
-    <div class="p">Waterproof Travel Backpack 30L<br>45,00 €</div>
+    <div class="p"><img src="https://cdn.shopify.com/s/files/1/1034/3415/8462/files/p-tote.jpg" alt="" loading="lazy"><div>Bolsa de lona Shiba Club<small>24,90 €</small></div></div>
+    <div class="p"><img src="https://cdn.shopify.com/s/files/1/1034/3415/8462/files/p-imanes.jpg" alt="" loading="lazy"><div>Imanes Shiba (set de 3)<small>12,90 €</small></div></div>
+    <div class="p"><img src="https://cdn.shopify.com/s/files/1/1034/3415/8462/files/p-chapas.jpg" alt="" loading="lazy"><div>Chapas esmaltadas Shiba (set de 3)<small>14,90 €</small></div></div>
+    <div class="p"><img src="https://cdn.shopify.com/s/files/1/1034/3415/8462/files/p-pegatinas.jpg" alt="" loading="lazy"><div>Hoja de pegatinas Shiba<small>5,90 €</small></div></div>
+  </div>
+  <h2>Peluches</h2>
+  <div class="grid">
+    <div class="p"><img src="https://cdn.shopify.com/s/files/1/1034/3415/8462/files/p-peluche.jpg" alt="" loading="lazy"><div>Peluche Shiba con pañuelo<small>34,90 €</small></div></div>
+    <div class="p"><img src="https://cdn.shopify.com/s/files/1/1034/3415/8462/files/p-peluche-sesamo.jpg" alt="" loading="lazy"><div>Peluche Shiba sésamo<small>34,90 €</small></div></div>
+    <div class="p"><img src="https://cdn.shopify.com/s/files/1/1034/3415/8462/files/p-llavero.jpg" alt="" loading="lazy"><div>Llavero de fieltro Shiba guiño<small>19,90 €</small></div></div>
+  </div>
+  <h2>Para tu perro</h2>
+  <div class="grid">
+    <div class="p"><img src="https://cdn.shopify.com/s/files/1/1034/3415/8462/files/p-correa.jpg" alt="" loading="lazy"><div>Correa de cuerda trenzada<small>29,90 €</small></div></div>
+    <div class="p"><img src="https://cdn.shopify.com/s/files/1/1034/3415/8462/files/p-collar.jpg" alt="" loading="lazy"><div>Collar con chapita de corazón<small>22,90 €</small></div></div>
+    <div class="p"><img src="https://cdn.shopify.com/s/files/1/1034/3415/8462/files/p-bandana.jpg" alt="" loading="lazy"><div>Bandana roja de lunares<small>12,90 €</small></div></div>
+    <div class="p"><img src="https://cdn.shopify.com/s/files/1/1034/3415/8462/files/p-juguetes.jpg" alt="" loading="lazy"><div>Pack de juguetes: pelota y hueso<small>16,90 €</small></div></div>
   </div>
 </main>
 
@@ -46,18 +83,21 @@
 
 <script>
   const log = document.getElementById('log');
+  const chat = document.getElementById('chat');
+  const input = document.getElementById('q');
+  const form = document.getElementById('f');
   let cid = null;
   try { cid = sessionStorage.getItem('cid'); } catch (e) {}
-  document.getElementById('chat-btn').onclick = () => document.getElementById('chat').classList.toggle('open');
+  document.getElementById('chat-btn').onclick = () => chat.classList.toggle('open');
   function add(text, who) {
     const d = document.createElement('div');
     d.className = 'b ' + who; d.textContent = text; log.appendChild(d); log.scrollTop = log.scrollHeight;
     return d;
   }
-  document.getElementById('f').onsubmit = async (ev) => {
+  form.onsubmit = async (ev) => {
     ev.preventDefault();
-    const q = document.getElementById('q'); const text = q.value.trim(); if (!text) return;
-    q.value = ''; add(text, 'me'); const wait = add('…', 'bot');
+    const text = input.value.trim(); if (!text) return;
+    input.value = ''; add(text, 'me'); const wait = add('…', 'bot');
     try {
       const r = await fetch('/api/chat', {method: 'POST', headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({message: text, conversation_id: cid})});
@@ -66,6 +106,9 @@
       wait.textContent = data.reply;
     } catch (e) { wait.textContent = 'Error de conexión. Inténtalo de nuevo.'; }
   };
+  document.querySelectorAll('.try button').forEach(b => b.onclick = () => {
+    chat.classList.add('open'); input.value = b.textContent; form.requestSubmit();
+  });
 </script>
 </body>
 </html>

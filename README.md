@@ -6,6 +6,16 @@ An AI support agent for Chinese sellers on Shopify who sell to Spanish-speaking 
 
 Everything is hand-written: no LangChain or other agent framework, no vendor SDKs. Models are called over plain HTTP with `httpx`, through a small adapter that speaks both the OpenAI-compatible and Anthropic APIs, so the model can be swapped by changing config.
 
+## Live demo
+
+| | Link | Access |
+|---|---|---|
+| **Try the agent** (chat in Spanish) | [es-support-agent.onrender.com](https://es-support-agent.onrender.com) | Public. Free hosting sleeps when idle, so the first reply can take ~50 s |
+| **The Shopify store** it serves: *Lumi Shiba Club*, a Shiba Inu merch shop (plushies, dog gear, tote bags, pins) | [lumi-es-test.myshopify.com](https://lumi-es-test.myshopify.com) | Development store, password-protected; ask me for the password |
+| Seller dashboard (Chinese) | `/admin` on the demo host | Password-protected |
+
+Try: *"¿Qué talla de collar le va a un shiba adulto?"* or *"¿Dónde está mi pedido #1001? Mi email es lucia@example.com"*.
+
 > **Demo video:** _coming soon_
 
 ## Results
@@ -21,6 +31,8 @@ Evaluated on a real Shopify development store with 32 hand-written cases coverin
 
 About **$0.002 per conversation** and **4.4 s** average latency on the real store.
 
+The real-store runs used the store's original test catalogue (clothing and travel gear). The store has since been re-themed as a Shiba Inu shop and that catalogue is archived, so to rerun the Shopify evals, unarchive those 5 products first. The mock-store evals (`SHOP_BACKEND=mock`) reproduce the numbers as they are.
+
 ### Against Shopify's built-in AI agent
 
 Shopify added a free AI agent to Shopify Inbox in 2026. I asked it the same questions on the same store (28 of the 32; the other 4 were not collected).
@@ -33,7 +45,7 @@ Shopify added a free AI agent to Shopify Inbox in 2026. I asked it the same ques
 
 What this shows: on product questions Shopify's agent is about as good, and it is free. The gap is orders. Shopify's agent only finds orders on a signed-in customer account, and it cannot open return, refund or cancel requests. This agent verifies order number + email (important for guest checkout, which is common in cross-border stores) and routes requests to the seller for approval.
 
-Caveats: the Shopify answers are one manual run; the test orders were guest orders, so a signed-in shopper would likely get order status; a "returns by chat" setting may not have been enabled. Full write-up and per-case scores are in the project report.
+Caveats: the Shopify answers are one manual run; the test orders were guest orders, so a signed-in shopper would likely get order status; a "returns by chat" setting may not have been enabled. Per-case scores and replies are in [`evals/results/`](evals/results/).
 
 ## What I fixed along the way, and how
 
@@ -44,6 +56,7 @@ Caveats: the Shopify answers are one manual run; the test orders were guest orde
 | Said size L was available "in both colours" when it existed in one | Prompt: check the exact size + colour combination before claiming stock |
 | Used *tú* with Colombian and Mexican customers who expect *usted* (prompt fix alone did not hold) | **Code:** `register_hint()` detects *usted* / *vos* / Spain from the customer's words and tells the model explicitly |
 | LLM judge marked correct answers as "made up" | Eval bug: the trace was truncated to 500 characters, so the judge could not see the size chart. Now logs full tool results |
+| After the store's old catalogue was archived, product search could still return it | **Code:** `search_products` only queries `status:active` products; order lookup is unchanged, so old orders still work |
 
 Rules a cheap model keeps breaking get moved from the prompt into code.
 
@@ -92,7 +105,7 @@ es_agent/
   static/      widget.js (embeddable chat), demo.html
 evals/         32 cases, runner, multi-model comparison, all result files
 tools_scripts/ seed the dev store (policies + test orders), install the widget into the theme
-tests/         23 unit tests, no API key needed
+tests/         24 unit tests, no API key needed
 render.yaml    one-click deploy on Render
 ```
 
@@ -100,7 +113,7 @@ render.yaml    one-click deploy on Render
 
 ```bash
 pip install -r requirements.txt
-python -m pytest -q                      # 23 passed, no network
+python -m pytest -q                      # 24 passed, no network
 cp .env.example .env                     # model URL, key, model name; Shopify settings
 uvicorn es_agent.server:app --reload     # http://localhost:8000 (demo shop), /admin (dashboard)
 ```

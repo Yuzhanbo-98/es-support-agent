@@ -6,9 +6,19 @@
 
 整个项目是手写的：不用 LangChain 这类框架，也不用任何厂商的 SDK。调模型只用 httpx 发 HTTP 请求。
 
-## 第一步：在你自己电脑上用真实模型跑评测（约 20 分钟）
+## 在线演示
 
-1. 装 Python 3.11 或更高版本，把这个文件夹解压到任意位置，在文件夹里打开终端：
+| | 链接 | 说明 |
+|---|---|---|
+| **和 Agent 聊天**（西语） | [es-support-agent.onrender.com](https://es-support-agent.onrender.com) | 公开可用。免费套餐闲置会休眠，第一条回复可能要等约 50 秒 |
+| **Agent 服务的独立站**：Lumi Shiba Club，柴犬周边店（玩偶、狗狗用品、帆布袋、徽章等） | [lumi-es-test.myshopify.com](https://lumi-es-test.myshopify.com) | Shopify 开发商店，有访问密码，需要的话找我要 |
+| 卖家中文后台 | 演示站的 `/admin` | 需要密码 |
+
+可以试：`¿Qué talla de collar le va a un shiba adulto?`，或 `¿Dónde está mi pedido #1001? Mi email es lucia@example.com`
+
+## 用真实模型跑多模型对比评测（约 20 分钟）
+
+1. 装 Python 3.11 或更高版本，克隆这个仓库，在文件夹里打开终端：
    ```bash
    python -m venv .venv
    # Mac / Linux：
@@ -16,7 +26,7 @@
    # Windows（PowerShell）：
    .venv\Scripts\Activate.ps1
    pip install -r requirements.txt
-   python -m pytest -q          # 应该显示 23 passed
+   python -m pytest -q          # 应该显示 24 passed
    ```
 2. 申请至少一个模型的 API key（DeepSeek 最便宜；Gemini 有免费额度），在文件夹里新建 `.env`，写一行，例如：
    ```
@@ -29,7 +39,6 @@
    python -m evals.compare
    ```
    终端会打印每条用例的通过情况和一张对比表，同时在 `evals/results/` 里写出 `compare_时间.md` 和每个模型的详细 JSON。32 条用例用便宜模型跑一遍，费用一般不到 1 美元。
-5. 把 `evals/results/` 文件夹发回给我，我来分析失败用例、修 Agent，再一起复测。
 
 **顺便和 Shopify 自带 AI 对比**（可选）：运行 `python tools_scripts/make_test_store_files.py`，会在 `test_store/` 生成
 `shopify_products.csv`（在开发者商店「产品 > 导入」）、`store_policies.txt`（粘贴到「设置 > 政策」）和 `inbox_test_sheet.csv`（32 条西语问题，逐条发给 Shopify Inbox 的 AI sales associate，把回答填进表里）。
@@ -47,7 +56,7 @@ es_agent/
 data/mock_store.json   模拟的中国卖家店铺（5 个商品、政策、3 个订单）
 evals/cases.jsonl      32 条评测用例（es-ES / es-MX / es-AR / es-CO / Spanglish / 攻击类）
 evals/run_evals.py     评测脚本（规则检查 + 可选的模型评审）
-tests/                 23 个单元测试（不需要 API key）
+tests/                 24 个单元测试（不需要 API key）
 ```
 
 ## 跑起来
@@ -104,6 +113,8 @@ python -m evals.run_evals --only size_dress_es order_status_ok
 5. `python -m tools_scripts.seed_shopify` 写入店铺政策和测试订单 #1001-#1003（和模拟数据一致）。
 6. 评测：`SHOP_BACKEND=shopify python -m evals.compare --judge` 就会对着真实商店跑；`SHOP_BACKEND=mock` 用模拟数据，结果可复现。
 
+   注意：Agent 只搜「上架」状态的商品（`status:active`）。演示店现在改成了柴犬周边店，原来那 5 个测试商品（亚麻裙、跑鞋等）已归档；要对着真实商店重跑评测，先把它们重新上架。
+
 ## 挂到 Shopify 商店前台（部署到 Render）
 
 1. 把代码推到 GitHub。
@@ -116,7 +127,7 @@ python -m evals.run_evals --only size_dress_es order_status_ok
 说明：聊天接口只接受 `*.myshopify.com` 的跨域请求（自定义域名加到 `WIDGET_ALLOWED_ORIGINS`），
 每个 IP 每 10 分钟最多 30 条消息（`RATE_LIMIT_PER_10MIN`）。免费套餐闲置 15 分钟会休眠，SQLite 数据重启后清空，只适合演示。
 
-## MVP 还没做的（见产品文档里的路线图）
+## 还没做的
 
 - 做成正式的 Shopify App（OAuth 安装、主题 App 扩展挂聊天窗口、App 计费）
 - 卖家同意退款后，自动调 Shopify 的退款接口（现在只改工单状态，并通知顾客）
