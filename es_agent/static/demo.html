@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lumi Home & Style · Demo</title>
+<style>
+  body{font-family:-apple-system,Segoe UI,Roboto,sans-serif;margin:0;background:#faf8f5;color:#222}
+  header{padding:18px 24px;background:#fff;border-bottom:1px solid #eee;font-weight:700;font-size:20px}
+  main{max-width:900px;margin:0 auto;padding:24px 16px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px}
+  .p{background:#fff;border-radius:10px;padding:14px;font-size:14px}
+  #chat-btn{position:fixed;right:20px;bottom:20px;background:#111;color:#fff;border:0;border-radius:24px;padding:12px 18px;cursor:pointer;font-size:15px}
+  #chat{position:fixed;right:20px;bottom:76px;width:min(360px,calc(100vw - 32px));height:480px;background:#fff;border-radius:14px;box-shadow:0 8px 30px rgba(0,0,0,.18);display:none;flex-direction:column;overflow:hidden}
+  #chat.open{display:flex}
+  #chat .top{background:#111;color:#fff;padding:12px 14px;font-weight:600}
+  #log{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
+  .b{max-width:80%;padding:8px 11px;border-radius:12px;font-size:14px;line-height:1.4;white-space:pre-wrap}
+  .me{align-self:flex-end;background:#111;color:#fff}
+  .bot{align-self:flex-start;background:#f1f1f1}
+  form{display:flex;border-top:1px solid #eee}
+  input{flex:1;border:0;padding:12px;font-size:14px;outline:none}
+  form button{border:0;background:#fff;padding:0 14px;cursor:pointer;font-weight:600}
+</style>
+</head>
+<body>
+<header>Lumi Home &amp; Style</header>
+<main>
+  <p>Tienda de demostración. Abre el chat y pregunta por tallas, stock, envíos, devoluciones o tu pedido
+  (prueba: pedido <b>#1003</b>, email <b>marta@example.com</b>).</p>
+  <div class="grid">
+    <div class="p">Linen Midi Dress<br>49,90 €</div>
+    <div class="p">CloudStep Running Shoes<br>59,00 €</div>
+    <div class="p">Mulberry Silk Scarf<br>35,00 €</div>
+    <div class="p">Non-slip Yoga Mat 6mm<br>29,90 €</div>
+    <div class="p">Waterproof Travel Backpack 30L<br>45,00 €</div>
+  </div>
+</main>
+
+<button id="chat-btn">💬 ¿Te ayudamos?</button>
+<div id="chat">
+  <div class="top">Atención al cliente</div>
+  <div id="log"><div class="b bot">¡Hola! ¿En qué puedo ayudarte?</div></div>
+  <form id="f"><input id="q" placeholder="Escribe tu mensaje..." autocomplete="off"><button>Enviar</button></form>
+</div>
+
+<script>
+  const log = document.getElementById('log');
+  let cid = null;
+  try { cid = sessionStorage.getItem('cid'); } catch (e) {}
+  document.getElementById('chat-btn').onclick = () => document.getElementById('chat').classList.toggle('open');
+  function add(text, who) {
+    const d = document.createElement('div');
+    d.className = 'b ' + who; d.textContent = text; log.appendChild(d); log.scrollTop = log.scrollHeight;
+    return d;
+  }
+  document.getElementById('f').onsubmit = async (ev) => {
+    ev.preventDefault();
+    const q = document.getElementById('q'); const text = q.value.trim(); if (!text) return;
+    q.value = ''; add(text, 'me'); const wait = add('…', 'bot');
+    try {
+      const r = await fetch('/api/chat', {method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({message: text, conversation_id: cid})});
+      const data = await r.json();
+      cid = data.conversation_id; try { sessionStorage.setItem('cid', cid); } catch (e) {}
+      wait.textContent = data.reply;
+    } catch (e) { wait.textContent = 'Error de conexión. Inténtalo de nuevo.'; }
+  };
+</script>
+</body>
+</html>

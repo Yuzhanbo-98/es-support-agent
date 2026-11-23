@@ -1,0 +1,13 @@
+把下面的内容分别粘贴到 Shopify 后台「设置 > 政策」（退款政策、配送政策等）：
+
+== RETURNS ==
+Returns accepted within 30 days of delivery. Items must be unused, unwashed and with original tags and packaging. Customers in the EU may withdraw within 14 days without giving a reason (EU right of withdrawal). Return shipping is paid by the customer, except for defective or wrong items, in which case we provide a free return label. Silk scarves can only be returned unopened for hygiene reasons. Returns go to our Spain warehouse in Valencia. Refunds are issued to the original payment method within 5-7 business days after we receive and inspect the item. To start a return, the customer must provide the order number and order email.
+
+== EXCHANGES ==
+Size exchanges are free once per order, subject to stock. Exchanges are processed as a return plus a new order.
+
+== SHIPPING ==
+Items from the Spain warehouse: 2-4 business days to Spain, free shipping on orders over 39 EUR, otherwise 3.99 EUR. Items from the China warehouse: 7-15 business days to Spain, 10-20 business days to Latin America (Mexico, Colombia, Argentina). Shipping to Latin America costs 9.90 EUR, import duties may apply and are paid by the customer. Orders ship within 1-2 business days.
+
+== PAYMENT ==
+We accept Visa, Mastercard, PayPal, Apple Pay and Google Pay. Prices are in EUR and include VAT for EU customers.

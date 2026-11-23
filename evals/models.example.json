@@ -1,0 +1,40 @@
+[
+  {
+    "name": "deepseek-chat",
+    "provider": "openai",
+    "base_url": "https://api.deepseek.com/v1",
+    "model": "deepseek-chat",
+    "api_key_env": "DEEPSEEK_API_KEY",
+    "usd_per_m_input": 0.27,
+    "usd_per_m_output": 1.10,
+    "_note": "单价请按官网当前价格修改，只用于估算成本"
+  },
+  {
+    "name": "qwen-plus",
+    "provider": "openai",
+    "base_url": "https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
+    "model": "qwen-plus",
+    "api_key_env": "DASHSCOPE_API_KEY",
+    "usd_per_m_input": 0.40,
+    "usd_per_m_output": 1.20
+  },
+  {
+    "name": "gemini-flash",
+    "provider": "openai",
+    "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+    "model": "gemini-2.5-flash",
+    "api_key_env": "GEMINI_API_KEY",
+    "usd_per_m_input": 0.30,
+    "usd_per_m_output": 2.50
+  },
+  {
+    "name": "local-qwen",
+    "provider": "openai",
+    "base_url": "http://localhost:11434/v1",
+    "model": "qwen2.5:7b",
+    "api_key_env": "OLLAMA_API_KEY",
+    "usd_per_m_input": 0,
+    "usd_per_m_output": 0,
+    "_note": "本地 Ollama：OLLAMA_API_KEY 随便填一个值，例如 ollama"
+  }
+]

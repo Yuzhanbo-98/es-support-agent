@@ -1,0 +1,138 @@
+{
+  "shop": {
+    "name": "Lumi Home & Style",
+    "seller_location": "深圳",
+    "currency": "EUR",
+    "markets": ["ES", "MX", "CO", "AR"],
+    "support_email": "support@lumi-example.com"
+  },
+  "products": [
+    {
+      "id": "p1001",
+      "title": "Linen Midi Dress",
+      "product_type": "Dress",
+      "tags": ["linen", "summer", "women", "dress"],
+      "description": "100% linen midi dress with side pockets and adjustable waist tie. Breathable, relaxed fit. Machine wash cold, gentle cycle, do not tumble dry.",
+      "material": "100% linen",
+      "care": "Machine wash cold (30°C), gentle cycle, hang dry, iron on medium heat.",
+      "size_chart_cm": {
+        "S": {"bust": "86-90", "waist": "68-72", "length": "115"},
+        "M": {"bust": "90-94", "waist": "72-76", "length": "116"},
+        "L": {"bust": "94-100", "waist": "76-82", "length": "117"},
+        "XL": {"bust": "100-106", "waist": "82-88", "length": "118"}
+      },
+      "fit_note": "Runs true to size. Between sizes: choose the larger size for a looser fit.",
+      "shipping_from": "China warehouse",
+      "variants": [
+        {"id": "v1", "title": "S / Beige", "price": "49.90", "inventory": 12, "options": {"Size": "S", "Color": "Beige"}},
+        {"id": "v2", "title": "M / Beige", "price": "49.90", "inventory": 0, "options": {"Size": "M", "Color": "Beige"}},
+        {"id": "v3", "title": "L / Beige", "price": "49.90", "inventory": 5, "options": {"Size": "L", "Color": "Beige"}},
+        {"id": "v4", "title": "M / Sage Green", "price": "49.90", "inventory": 8, "options": {"Size": "M", "Color": "Sage Green"}},
+        {"id": "v5", "title": "XL / Sage Green", "price": "49.90", "inventory": 2, "options": {"Size": "XL", "Color": "Sage Green"}}
+      ]
+    },
+    {
+      "id": "p1002",
+      "title": "CloudStep Running Shoes",
+      "product_type": "Shoes",
+      "tags": ["running", "sneakers", "unisex", "shoes", "sport"],
+      "description": "Lightweight running shoes with breathable mesh upper and EVA foam sole. Weight 240 g per shoe (EU 40). Suitable for road running and daily wear, not for trail.",
+      "material": "Mesh upper, EVA midsole, rubber outsole",
+      "care": "Hand wash with mild soap. Do not machine wash.",
+      "size_chart_cm": {"EU 37": {"foot_length": "23.5"}, "EU 38": {"foot_length": "24.0"}, "EU 39": {"foot_length": "24.5"}, "EU 40": {"foot_length": "25.0"}, "EU 41": {"foot_length": "25.5"}, "EU 42": {"foot_length": "26.5"}, "EU 43": {"foot_length": "27.0"}},
+      "fit_note": "Runs half a size small. We recommend ordering half a size up, or one size up for wide feet.",
+      "shipping_from": "Spain warehouse (Valencia)",
+      "variants": [
+        {"id": "v11", "title": "EU 38 / White", "price": "59.00", "inventory": 6, "options": {"Size": "EU 38", "Color": "White"}},
+        {"id": "v12", "title": "EU 39 / White", "price": "59.00", "inventory": 0, "options": {"Size": "EU 39", "Color": "White"}},
+        {"id": "v13", "title": "EU 40 / White", "price": "59.00", "inventory": 4, "options": {"Size": "EU 40", "Color": "White"}},
+        {"id": "v14", "title": "EU 42 / Black", "price": "59.00", "inventory": 9, "options": {"Size": "EU 42", "Color": "Black"}},
+        {"id": "v15", "title": "EU 43 / Black", "price": "59.00", "inventory": 3, "options": {"Size": "EU 43", "Color": "Black"}}
+      ]
+    },
+    {
+      "id": "p1003",
+      "title": "Mulberry Silk Scarf",
+      "product_type": "Accessories",
+      "tags": ["silk", "scarf", "gift", "women"],
+      "description": "Square scarf in 100% mulberry silk (16 momme). Size 90 x 90 cm. Hand-rolled edges. Comes in a gift box.",
+      "material": "100% mulberry silk, 16 momme",
+      "care": "Dry clean or hand wash in cold water with silk detergent. Do not wring.",
+      "shipping_from": "China warehouse",
+      "variants": [
+        {"id": "v21", "title": "Blue Floral", "price": "35.00", "inventory": 20, "options": {"Pattern": "Blue Floral"}},
+        {"id": "v22", "title": "Red Geometric", "price": "35.00", "inventory": 0, "options": {"Pattern": "Red Geometric"}}
+      ]
+    },
+    {
+      "id": "p1004",
+      "title": "Non-slip Yoga Mat 6mm",
+      "product_type": "Sport",
+      "tags": ["yoga", "mat", "fitness", "sport"],
+      "description": "TPE yoga mat, 183 x 61 cm, 6 mm thick, double-sided non-slip texture, includes carrying strap. Latex-free and PVC-free.",
+      "material": "TPE (latex-free, PVC-free)",
+      "care": "Wipe with a damp cloth. Air dry away from direct sunlight.",
+      "shipping_from": "Spain warehouse (Valencia)",
+      "variants": [
+        {"id": "v31", "title": "Purple", "price": "29.90", "inventory": 15, "options": {"Color": "Purple"}},
+        {"id": "v32", "title": "Black", "price": "29.90", "inventory": 11, "options": {"Color": "Black"}}
+      ]
+    },
+    {
+      "id": "p1005",
+      "title": "Waterproof Travel Backpack 30L",
+      "product_type": "Bags",
+      "tags": ["backpack", "travel", "waterproof", "laptop", "bag"],
+      "description": "30L backpack with padded laptop sleeve (fits up to 15.6 inch laptops), USB charging port (power bank not included), water-resistant 600D polyester (IPX4, splash resistant, not submersible). Dimensions 48 x 31 x 20 cm. Meets most airline cabin size limits.",
+      "material": "600D polyester, water-resistant coating",
+      "care": "Spot clean with a damp cloth.",
+      "shipping_from": "China warehouse",
+      "variants": [
+        {"id": "v41", "title": "Grey", "price": "45.00", "inventory": 7, "options": {"Color": "Grey"}},
+        {"id": "v42", "title": "Navy", "price": "45.00", "inventory": 1, "options": {"Color": "Navy"}}
+      ]
+    }
+  ],
+  "policies": {
+    "returns": "Returns accepted within 30 days of delivery. Items must be unused, unwashed and with original tags and packaging. Customers in the EU may withdraw within 14 days without giving a reason (EU right of withdrawal). Return shipping is paid by the customer, except for defective or wrong items, in which case we provide a free return label. Silk scarves can only be returned unopened for hygiene reasons. Returns go to our Spain warehouse in Valencia. Refunds are issued to the original payment method within 5-7 business days after we receive and inspect the item. To start a return, the customer must provide the order number and order email.",
+    "exchanges": "Size exchanges are free once per order, subject to stock. Exchanges are processed as a return plus a new order.",
+    "shipping": "Items from the Spain warehouse: 2-4 business days to Spain, free shipping on orders over 39 EUR, otherwise 3.99 EUR. Items from the China warehouse: 7-15 business days to Spain, 10-20 business days to Latin America (Mexico, Colombia, Argentina). Shipping to Latin America costs 9.90 EUR, import duties may apply and are paid by the customer. Orders ship within 1-2 business days.",
+    "payment": "We accept Visa, Mastercard, PayPal, Apple Pay and Google Pay. Prices are in EUR and include VAT for EU customers."
+  },
+  "orders": [
+    {
+      "name": "#1001",
+      "email": "lucia@example.com",
+      "created_at": "2026-11-10",
+      "financial_status": "PAID",
+      "fulfillment_status": "FULFILLED",
+      "delivered": false,
+      "tracking": {"company": "Correos", "number": "PQ123456789ES", "url": "https://www.correos.es/"},
+      "items": [{"title": "Linen Midi Dress", "variant": "S / Beige", "quantity": 1}],
+      "shipping_country": "ES"
+    },
+    {
+      "name": "#1002",
+      "email": "diego@example.com",
+      "created_at": "2026-11-20",
+      "financial_status": "PAID",
+      "fulfillment_status": "UNFULFILLED",
+      "delivered": false,
+      "tracking": null,
+      "items": [{"title": "Waterproof Travel Backpack 30L", "variant": "Grey", "quantity": 1}],
+      "shipping_country": "MX"
+    },
+    {
+      "name": "#1003",
+      "email": "marta@example.com",
+      "created_at": "2026-11-02",
+      "financial_status": "PAID",
+      "fulfillment_status": "FULFILLED",
+      "delivered": true,
+      "delivered_at": "2026-11-06",
+      "tracking": {"company": "SEUR", "number": "SE998877", "url": "https://www.seur.com/"},
+      "items": [{"title": "CloudStep Running Shoes", "variant": "EU 40 / White", "quantity": 1}],
+      "shipping_country": "ES"
+    }
+  ]
+}
